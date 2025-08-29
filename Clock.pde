@@ -1,18 +1,36 @@
+// global spacing variables
+hoursPerLine;
+hourLines;
+minsPerLine;
+minLines;
+secsPerLine;
+secLines;
+
+// global size variables
 int secondSize;
 int minuteSize;
 int hourSize;
 int spacing;
 
+// global color variables
 color secondColor;
 color minuteColor;
 color hourColor;
 
+// global location variables
 int secondsY;
 int minutesY;
 int hoursY;
 
 void setup() {
   size(1090, 600);
+  
+  hoursPerLine = 12;
+  hourLines = 24 / hoursPerLine;
+  minsPerLine = 20;
+  minLines = 60 / minsPerLine;
+  secsPerLine = 30;
+  secLines = 60 / secsPerLine;
 
   secondSize = 20;
   minuteSize = 40;
@@ -51,13 +69,13 @@ void draw() {
     fillMinutes(minutesLineFull, minutesY);
     fillMinutes(minutesLineFull, minutesY + minuteSize + spacing);
     fillMinutes(minutes, minutesY + (2 * (minuteSize + spacing)));
-  } else
-    if (minutes > minutesLineFull) {
+  } else if (minutes > minutesLineFull) {
       fillMinutes(minutesLineFull, minutesY);
       fillMinutes(minutes - minutesLineFull, minutesY + minuteSize + spacing);
     } else {
       fillMinutes(minutes, minutesY);
     }
+  }
 
   //create seconds
   if (seconds > secondsLineFull) {
