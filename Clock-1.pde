@@ -38,32 +38,36 @@ void draw() {
   int minutesLineFull = width / (minuteSize + spacing);
   int hoursLineFull = width / (hourSize + spacing);
 
-  //create hours
+  //create hours on a first and second line
   if (hours > hoursLineFull) {
     fillHours(hoursLineFull, hoursY);
     fillHours(hours - hoursLineFull, hoursY + hourSize + spacing);
   } else {
+    // create hours on a first line
     fillHours(hours, hoursY);
   }
 
-  //create minutes
+  //create minutes on a first, second, and third line
   if (minutes > 2 * minutesLineFull) {
     fillMinutes(minutesLineFull, minutesY);
     fillMinutes(minutesLineFull, minutesY + minuteSize + spacing);
     fillMinutes(minutes, minutesY + (2 * (minuteSize + spacing)));
   } else
+    // create minutes on a first and second line
     if (minutes > minutesLineFull) {
       fillMinutes(minutesLineFull, minutesY);
       fillMinutes(minutes - minutesLineFull, minutesY + minuteSize + spacing);
     } else {
+      // create minutes on a first line
       fillMinutes(minutes, minutesY);
     }
 
-  //create seconds
+  //create seconds on a first and second line
   if (seconds > secondsLineFull) {
     fillSeconds(secondsLineFull, secondsY);
     fillSeconds(seconds - secondsLineFull, secondsY + secondSize + spacing);
   } else {
+  // create seconds on a first line
     fillSeconds(seconds, secondsY);
   }
 }
