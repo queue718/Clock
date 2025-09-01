@@ -67,7 +67,7 @@ void draw() {
     fillSeconds(secondsLineFull, secondsY);
     fillSeconds(seconds - secondsLineFull, secondsY + secondSize + spacing);
   } else {
-  // create seconds on a first line
+    // create seconds on a first line
     fillSeconds(seconds, secondsY);
   }
 }
