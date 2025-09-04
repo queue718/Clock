@@ -1,44 +1,44 @@
 // global variables
-float secondSize;
-float minuteSize;
+float secSize;
+float minSize;
 float hourSize;
 
-int secondsPerLine = 30;
-int minutesPerLine = 20;
+int secsPerLine = 30;
+int minsPerLine = 20;
 int hoursPerLine = 12;
 
 int spacing = 10;
 
-color secondColor;
-color minuteColor;
+color secColor;
+color minColor;
 color hourColor;
 
-float secondsY;
-float minutesY;
+float secsY;
+float minsY;
 float hoursY;
 
 int numHourLines;
-int numMinuteLines;
-int numSecondLines;
+int numMinLines;
+int numSecLines;
 
 void setup() {
   size(610, 250);
   
-  secondsPerLine = 30;
-  minutesPerLine = 20;
+  secsPerLine = 30;
+  minsPerLine = 20;
   hoursPerLine = 12;
 
-  secondSize = (float(width) - ((secondsPerLine) * spacing)) / secondsPerLine;
-  minuteSize = (float(width) - ((minutesPerLine) * spacing)) / minutesPerLine;
+  secSize = (float(width) - ((secsPerLine) * spacing)) / secsPerLine;
+  minSize = (float(width) - ((minsPerLine) * spacing)) / minsPerLine;
   hourSize = (float(width) - ((hoursPerLine) * spacing)) / hoursPerLine;
 
-  secondColor = color(33, 158, 188);
-  minuteColor = color(251, 133, 0);
+  secColor = color(33, 158, 188);
+  minColor = color(251, 133, 0);
   hourColor = color(103, 148, 54);
 
   hoursY = spacing;
-  minutesY = (2 * hourSize) + (3 * spacing);
-  secondsY = minutesY + (3 * (minuteSize + spacing));
+  minsY = (2 * hourSize) + (3 * spacing);
+  secsY = minsY + (3 * (minSize + spacing));
 }
 
 void draw() {
@@ -48,8 +48,8 @@ void draw() {
   int hours = hour();
   
   numHourLines = ceil(float(hours) / hoursPerLine);
-  numMinuteLines = ceil(float(minutes) / minutesPerLine);
-  numSecondLines = ceil(float(seconds) / secondsPerLine);
+  numMinLines = ceil(float(minutes) / minsPerLine);
+  numSecLines = ceil(float(seconds) / secsPerLine);
 
   //create hours on a first and second line
   if (numHourLines == 2) {
@@ -62,45 +62,45 @@ void draw() {
   }
 
   //create minutes on a first, second, and third line
-  if (numMinuteLines == 3) {
-    fillMinutes(minutesPerLine, minutesY);
-    fillMinutes(minutesPerLine, minutesY + minuteSize + spacing);
-    fillMinutes(minutes - (2 * minutesPerLine), minutesY + (2 * (minuteSize + spacing)));
+  if (numMinLines == 3) {
+    fillMinutes(minsPerLine, minsY);
+    fillMinutes(minsPerLine, minsY + minSize + spacing);
+    fillMinutes(minutes - (2 * minsPerLine), minsY + (2 * (minSize + spacing)));
     // create minutes on a first and second line
   } 
-  if (numMinuteLines == 2) {
-    fillMinutes(minutesPerLine, minutesY);
-    fillMinutes(minutes - minutesPerLine, minutesY + minuteSize + spacing);
+  if (numMinLines == 2) {
+    fillMinutes(minsPerLine, minsY);
+    fillMinutes(minutes - minsPerLine, minsY + minSize + spacing);
   }
-  if (numMinuteLines == 1) {
+  if (numMinLines == 1) {
     // create minutes on a first line
-    fillMinutes(minutes, minutesY);
+    fillMinutes(minutes, minsY);
   }
 
   //create seconds on a first and second line
-  if (numSecondLines == 2) {
-    fillSeconds(secondsPerLine, secondsY);
-    fillSeconds(seconds - secondsPerLine, secondsY + secondSize + spacing);
+  if (numSecLines == 2) {
+    fillSeconds(secsPerLine, secsY);
+    fillSeconds(seconds - secsPerLine, secsY + secSize + spacing);
   }
-  if (numSecondLines == 1) {
+  if (numSecLines == 1) {
     // create seconds on a first line
-    fillSeconds(seconds, secondsY);
+    fillSeconds(seconds, secsY);
   }
 }
 
 void fillSeconds(int num, float y) {
-  for (int x = 0; x < num * (secondSize + spacing); x += secondSize + spacing) {
+  for (int x = 0; x < num * (secSize + spacing); x += secSize + spacing) {
     noStroke();
-    fill(secondColor);
-    rect(x + spacing, y, secondSize, secondSize);
+    fill(secColor);
+    rect(x + spacing, y, secSize, secSize);
   }
 }
 
 void fillMinutes(int num, float y) {
-  for (int x = 0; x < num * (minuteSize + spacing); x += minuteSize + spacing) {
+  for (int x = 0; x < num * (minSize + spacing); x += minSize + spacing) {
     noStroke();
-    fill(minuteColor);
-    rect(x + spacing, y, minuteSize, minuteSize);
+    fill(minColor);
+    rect(x + spacing, y, minSize, minSize);
   }
 }
 
