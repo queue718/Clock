@@ -35,10 +35,6 @@ void setup() {
   secColor = color(33, 158, 188);
   minColor = color(251, 133, 0);
   hourColor = color(103, 148, 54);
-
-  hoursY = spacing;
-  minsY = (2 * hourSize) + (3 * spacing);
-  secsY = minsY + (3 * (minSize + spacing));
 }
 
 void draw() {
@@ -50,6 +46,10 @@ void draw() {
   numHourLines = ceil(float(hours) / hoursPerLine);
   numMinLines = ceil(float(minutes) / minsPerLine);
   numSecLines = ceil(float(seconds) / secsPerLine);
+  
+  hoursY = spacing;
+  minsY = (numHourLines * hourSize) + ((numHourLines + 1) * spacing);
+  secsY = minsY + (numMinLines * (minSize + spacing));
 
   //create hours on a first and second line
   if (numHourLines == 2) {
