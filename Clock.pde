@@ -1,3 +1,4 @@
+// global variables
 float secondSize;
 float minuteSize;
 float hourSize;
@@ -21,22 +22,22 @@ int numMinuteLines;
 int numSecondLines;
 
 void setup() {
-  size(800, 400);
+  size(610, 250);
   
   secondsPerLine = 30;
   minutesPerLine = 20;
   hoursPerLine = 12;
 
-  secondSize = (width - (secondsPerLine) * spacing) / secondsPerLine;
-  minuteSize = (width - (minutesPerLine) * spacing) / minutesPerLine;
-  hourSize = (width - (hoursPerLine) * spacing) / hoursPerLine;
+  secondSize = (float(width) - ((secondsPerLine) * spacing)) / secondsPerLine;
+  minuteSize = (float(width) - ((minutesPerLine) * spacing)) / minutesPerLine;
+  hourSize = (float(width) - ((hoursPerLine) * spacing)) / hoursPerLine;
 
   secondColor = color(33, 158, 188);
   minuteColor = color(251, 133, 0);
   hourColor = color(103, 148, 54);
 
-  hoursY = 0;
-  minutesY = 2 * (hourSize + spacing);
+  hoursY = spacing;
+  minutesY = (2 * hourSize) + (3 * spacing);
   secondsY = minutesY + (3 * (minuteSize + spacing));
 }
 
@@ -50,13 +51,12 @@ void draw() {
   numMinuteLines = ceil(float(minutes) / minutesPerLine);
   numSecondLines = ceil(float(seconds) / secondsPerLine);
 
-
   //create hours on a first and second line
   if (numHourLines == 2) {
     fillHours(hoursPerLine, hoursY);
     fillHours(hours - hoursPerLine, hoursY + hourSize + spacing);
   }
-  if (numMinuteLines == 1) {
+  if (numHourLines == 1) {
     // create hours on a first line
     fillHours(hours, hoursY);
   }
@@ -65,7 +65,7 @@ void draw() {
   if (numMinuteLines == 3) {
     fillMinutes(minutesPerLine, minutesY);
     fillMinutes(minutesPerLine, minutesY + minuteSize + spacing);
-    fillMinutes(minutes, minutesY + (2 * (minuteSize + spacing)));
+    fillMinutes(minutes - (2 * minutesPerLine), minutesY + (2 * (minuteSize + spacing)));
     // create minutes on a first and second line
   } 
   if (numMinuteLines == 2) {
