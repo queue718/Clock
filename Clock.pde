@@ -42,6 +42,7 @@ void draw() {
   int seconds = second();
   int minutes = minute() - 1;
   int hours = hour() - 1;
+  print(hours + ":" + minutes + ":" + seconds + "\n");
   
   numHourLines = ceil(float(hours) / hoursPerLine);
   numMinLines = ceil(float(minutes) / minsPerLine);
