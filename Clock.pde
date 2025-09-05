@@ -40,8 +40,8 @@ void setup() {
 void draw() {
   background(255);
   int seconds = second();
-  int minutes = minute();
-  int hours = hour();
+  int minutes = minute() - 1;
+  int hours = hour() - 1;
   
   numHourLines = ceil(float(hours) / hoursPerLine);
   numMinLines = ceil(float(minutes) / minsPerLine);
@@ -89,7 +89,7 @@ void draw() {
 }
 
 void fillSeconds(int num, float y) {
-  for (int x = 0; x < num * (secSize + spacing); x += secSize + spacing) {
+  for (int x = 1; x <= num * (secSize + spacing); x += secSize + spacing) {
     noStroke();
     fill(secColor);
     rect(x + spacing, y, secSize, secSize);
@@ -97,7 +97,7 @@ void fillSeconds(int num, float y) {
 }
 
 void fillMinutes(int num, float y) {
-  for (int x = 0; x < num * (minSize + spacing); x += minSize + spacing) {
+  for (int x = 1; x <= num * (minSize + spacing); x += minSize + spacing) {
     noStroke();
     fill(minColor);
     rect(x + spacing, y, minSize, minSize);
@@ -105,7 +105,7 @@ void fillMinutes(int num, float y) {
 }
 
 void fillHours(int num, float y) {
-  for (int x = 0; x < num * (hourSize + spacing); x += hourSize + spacing) {
+  for (int x = 1; x <= num * (hourSize + spacing); x += hourSize + spacing) {
     noStroke();
     fill(hourColor);
     rect(x + spacing, y, hourSize, hourSize);
